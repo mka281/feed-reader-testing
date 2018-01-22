@@ -31,24 +31,24 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-         it('has an non-empty URL', function() {
-           for (var i=0; i<allFeeds.length; i++) {
-              expect(allFeeds[i].url).toBeDefined();
-              expect(allFeeds[i].url).not.toBe("");
-           }
-         });
+        it('has an non-empty URL', function() {
+            for (var i=0; i<allFeeds.length; i++) {
+                expect(allFeeds[i].url).toBeDefined();
+                expect(allFeeds[i].url).not.toBe("");
+            }
+        });
 
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-         it('has an non-empty name', function() {
-           for (var i=0; i<allFeeds.length; i++) {
-              expect(allFeeds[i].name).toBeDefined();
-              expect(allFeeds[i].name).not.toBe("");
-           }
-         });
+        it('has an non-empty name', function() {
+            for (var i=0; i<allFeeds.length; i++) {
+                expect(allFeeds[i].name).toBeDefined();
+                expect(allFeeds[i].name).not.toBe("");
+            }
+        });
     });
 
 
@@ -64,7 +64,7 @@ $(function() {
          */
 
         it('has a hidden menu by default', function() {
-          expect(body.hasClass('menu-hidden')).toEqual(true);
+            expect(body.hasClass('menu-hidden')).toEqual(true);
         });
 
          /* TODO: Write a test that ensures the menu changes
@@ -74,12 +74,11 @@ $(function() {
           */
 
         it('is toggling visibility on click', function() {
-          $('.menu-icon-link').click();
-          expect(body.hasClass('menu-hidden')).toEqual(false);
-          $('.menu-icon-link').click();
-          expect(body.hasClass('menu-hidden')).toEqual(true);
-        })
-
+            $('.menu-icon-link').click();
+            expect(body.hasClass('menu-hidden')).toEqual(false);
+            $('.menu-icon-link').click();
+            expect(body.hasClass('menu-hidden')).toEqual(true);
+        });
     });
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
@@ -91,20 +90,38 @@ $(function() {
          */
 
          beforeEach(function(done) {
-           loadFeed(0, done);
+             loadFeed(0, done);
          });
 
-         it('has at least a single .entry element within the .feed container', function(done) {
-           var entryNum = $('.entry').length;
-           expect(entryNum).toBeGreaterThan(0);
-           done();
-         });
+        it('has at least a single .entry element within the .feed container', function(done) {
+            var entryNum = $('.entry').length;
+            expect(entryNum).toBeGreaterThan(0);
+            done();
+        });
     });
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        var feedOne;
+        var feedTwo;
 
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                feedOne = $('.feed').html();
+                done();
+            });
+        });
+
+        it('changes content when a new feed is loaded by the loadFeed function', function(done) {
+            loadFeed(1, function() {
+                feedTwo = $('.feed').html();
+                expect(feedTwo).not.toEqual(feedOne);
+                done();
+            });
+        });
+    });
 }());
