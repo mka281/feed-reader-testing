@@ -26,7 +26,6 @@ $(function() {
             expect(allFeeds.length).not.toBe(0);
         });
 
-
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
@@ -37,7 +36,6 @@ $(function() {
                 expect(allFeeds[i].url).not.toBe("");
             }
         });
-
 
         /* TODO: Write a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
@@ -55,14 +53,12 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
 
-        var body = $('body');
-
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
-
+        var body = $('body');
         it('has a hidden menu by default', function() {
             expect(body.hasClass('menu-hidden')).toEqual(true);
         });
@@ -72,7 +68,6 @@ $(function() {
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-
         it('is toggling visibility on click', function() {
             $('.menu-icon-link').click();
             expect(body.hasClass('menu-hidden')).toEqual(false);
@@ -80,18 +75,20 @@ $(function() {
             expect(body.hasClass('menu-hidden')).toEqual(true);
         });
     });
+
+
     /* TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
+
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-
-         beforeEach(function(done) {
-             loadFeed(0, done);
-         });
+        beforeEach(function(done) {
+            loadFeed(0, done);
+        });
 
         it('has at least a single .entry element within the .feed container', function(done) {
             var entryNum = $('.entry').length;
@@ -99,6 +96,7 @@ $(function() {
             done();
         });
     });
+
 
     /* TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
@@ -123,5 +121,7 @@ $(function() {
                 done();
             });
         });
+
     });
+    
 }());
