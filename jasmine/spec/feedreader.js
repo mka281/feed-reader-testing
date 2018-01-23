@@ -91,7 +91,7 @@ $(function() {
         });
 
         it('has at least a single .entry element within the .feed container', function(done) {
-            var entryNum = $('.entry').length;
+            var entryNum = $('.feed .entry').length;
             expect(entryNum).toBeGreaterThan(0);
             done();
         });
@@ -123,5 +123,5 @@ $(function() {
         });
 
     });
-    
+
 }());
